@@ -3,6 +3,7 @@ import org.gradle.kotlin.dsl.provider.inLenientMode
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -29,6 +30,7 @@ android {
         }
     }
     buildFeatures {
+        viewBinding = true
         dataBinding = true
     }
     compileOptions {
