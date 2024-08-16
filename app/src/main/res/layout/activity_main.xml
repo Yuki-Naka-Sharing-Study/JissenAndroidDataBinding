@@ -5,11 +5,9 @@
 
     <data>
 
-        <import type="android.view.View"/>
-
         <variable
-            name="enableAlarm"
-            type="boolean" />
+            name="inputText"
+            type="String" />
     </data>
 
     <LinearLayout
@@ -19,19 +17,17 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-        <com.google.android.material.materialswitch.MaterialSwitch
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="@={enableAlarm}"
-            android:padding="16dp"
-            android:text="アラーム"
-            />
+            android:inputType="text"
+            android:text="@={inputText}" />
 
-        <TimePicker
-            android:id="@+id/time_picker"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/button_confirm"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{enableAlarm ? View.VISIBLE : View.GONE}"
+            android:text="Confirm"
             />
 
     </LinearLayout>
