@@ -8,30 +8,34 @@
         <import type="android.view.View"/>
 
         <variable
-            name="enableAlarm"
-            type="boolean"
+            name="text"
+            type="String"
             />
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener"
+            />
+
     </data>
 
     <LinearLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="@={enableAlarm}"
-            android:text="アラーム"
-            />
-
-        <TimePicker
-            android:id="@+id/tim_picker"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{enableAlarm ? View.VISIBLE : View.GONE}"
+            android:text="@{text}"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{onClick}"
+            android:text="PUSH"
             />
 
     </LinearLayout>
