@@ -3,11 +3,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <data>
+
+        <import type="android.view.View"
+            />
+
+        <variable
+            name="form"
+            type="com.example.jissenandroiddatabinding.MainForm"
+            />
+
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".MainActivity"
-        />
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="宛先を必ず指定してください。"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="@{form.valid ? View.INVISIBLE : View.VISIBLE}"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:hint="To"
+            android:inputType="textEmailAddress"
+            android:text="@={form.to}"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:hint="件名"
+            android:inputType="textEmailSubject"
+            android:text="@={form.subject}"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:hint="本文"
+            android:inputType="textMultiLine"
+            android:text="@={form.message}"
+            />
+
+        <Button
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClickListener="@{(v) -> form.validate(context)}"
+            android:text="Send"
+            />
+
+    </LinearLayout>
+
 
 </layout>
