@@ -7,6 +7,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="form"
             type="com.example.jissenandroiddatabinding.MainForm"
@@ -29,7 +31,8 @@
             android:hint="To"
             android:inputType="textEmailAddress"
             android:text="@={form.to}"
-            errorText="@{form.errorMessage}"
+            app:errorText="@{@string/error_message}"
+            app:showError="@{!form.valid}"
             />
 
         <EditText
@@ -54,11 +57,20 @@
             android:text="@={form.message}"
             />
 
+        <ProgressBar
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="@{form.requesting ? View.VISIBLE : View.INVISIBLE}"
+            />
+
         <Button
             android:id="@+id/button_send"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="@{!form.requesting}"
             android:onClickListener="@{(v) -> form.validate(context)}"
             android:text="Send"
             />
