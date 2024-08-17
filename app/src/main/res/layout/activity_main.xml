@@ -3,11 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
-    <ListView
-        android:id="@+id/list_view"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
+        tools:context=".MainActivity">
+
+    <fragment
+        android:id="@+id/fragment_main"
+        android:name="com.example.jissenandroiddatabinding.MainFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         />
+
+    </FrameLayout>
 
 </layout>
