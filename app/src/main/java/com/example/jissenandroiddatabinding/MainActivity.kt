@@ -1,9 +1,16 @@
 package com.example.jissenandroiddatabinding
 
+import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.jissenandroiddatabinding.databinding.ActivityMainBinding
+import com.example.jissenandroiddatabinding.databinding.ListExampleBinding
+import java.util.Date
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,8 +18,25 @@ class MainActivity : AppCompatActivity() {
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(
             this, R.layout.activity_main
         )
-        binding.setOnClick {
-            binding.text = "Click!"
+        val adapter = MainListAdapter(this).apply {
+            add(ListItem("ゴミ出し", Date()))
+            add(ListItem("技術書を書く", Date()))
+            add(ListItem("脱稿する", Date()))
+        }
+        binding.listView.adapter = adapter
+    }
+
+    class MainListAdapter(context: Context): ArrayAdapter<ListItem>(context, 0) {
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+            val binding: ListExampleBinding
+            if (convertView == null) {
+                binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.list_example, parent, false)
+                binding.root.tag = binding
+            } else {
+                binding = convertView.tag as ListExampleBinding
+            }
+            binding.item = getItem(position)
+            return binding.root
         }
     }
 }
