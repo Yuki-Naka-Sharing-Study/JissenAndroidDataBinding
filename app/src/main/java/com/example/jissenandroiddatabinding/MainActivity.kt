@@ -14,3 +14,5 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+
+// 実践Android Data Binding　62%　から再開。
