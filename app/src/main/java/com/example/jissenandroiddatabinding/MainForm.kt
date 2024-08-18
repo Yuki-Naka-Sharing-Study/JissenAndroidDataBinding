@@ -6,6 +6,9 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
+import retrofit2.Call
+import retrofit2.Response
+import javax.security.auth.callback.Callback
 
 typealias ObservableString = ObservableField<String>
 
@@ -29,8 +32,11 @@ class MainForm: BaseObservable(){
     }
 
     private fun send() {
-        android.os.Handler(Looper.getMainLooper()).postDelayed({
-            onComplete.postValue(true)
-        }, 3000) // 適宜遅延時間を設定
+        Api.client.postSample().enqueue(object : retrofit2.Callback<String> {
+            override fun onFailure(call: Call<String>, t: Throwable) {}
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                onComplete.postValue(true)
+            }
+        })
     }
 }
