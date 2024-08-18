@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.jissenandroiddatabinding.databinding.ActivityMainBinding
 
+// 続き 第4章 Build GitHub Search Repos App
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
