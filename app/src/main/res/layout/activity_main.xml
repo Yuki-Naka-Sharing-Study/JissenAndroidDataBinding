@@ -7,56 +7,18 @@
 
     <data>
 
-        <import type="android.view.View" />
-
         <variable
-            name="viewModel"
-            type="com.example.jissenandroiddatabinding.MainViewModel"
+            name="value"
+            type="Integer"
             />
 
     </data>
 
-    <RelativeLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-
-        <EditText
-            android:id="@+id/search_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/button_search"
-            android:hint="リポジトリー名"
-            android:inputType="text"
-            android:text="@={viewModel.searchWord}"
-            />
-
-        <Button
-            android:id="@+id/button_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_alignParentEnd="true"
-            android:onClickListener="@{(v) -> viewModel.search(viewModel.searchWord)}"
-            android:text="検索"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/button_search"
-            tools:context=".MainActivity"
-            />
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE }"
-            />
-
-    </RelativeLayout>
+        android:text="@{String.valueOf(value ?? 10)}"
+        tools:context=".MainActivity"
+        />
 
 </layout>
