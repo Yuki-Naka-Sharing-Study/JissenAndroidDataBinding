@@ -10,71 +10,53 @@
         <import type="android.view.View" />
 
         <variable
-            name="form"
-            type="com.example.jissenandroiddatabinding.MainForm"
+            name="viewModel"
+            type="com.example.jissenandroiddatabinding.MainViewModel"
             />
 
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".MainActivity"
         >
 
         <EditText
+            android:id="@+id/search_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:hint="To"
-            android:inputType="textEmailAddress"
-            android:text="@={form.to}"
-            app:errorText="@{@string/error_message}"
-            app:showError="@{!form.valid}"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:hint="件名"
-            android:inputType="textEmailSubject"
-            android:text="@={form.subject}"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_weight="1"
-            android:gravity="top"
-            android:hint="本文"
-            android:inputType="textMultiLine"
-            android:text="@={form.message}"
-            />
-
-        <ProgressBar
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:visibility="@{form.requesting ? View.VISIBLE : View.INVISIBLE}"
+            android:layout_toStartOf="@id/button_search"
+            android:hint="リポジトリー名"
+            android:inputType="text"
+            android:text="@={viewModel.searchWord}"
             />
 
         <Button
-            android:id="@+id/button_send"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
+            android:id="@+id/button_search"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="@{!form.requesting}"
-            android:onClickListener="@{(v) -> form.validate(context)}"
-            android:text="Send"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_alignParentEnd="true"
+            android:onClickListener="@{(v) -> viewModel.search(viewModel.searchWord)}"
+            android:text="検索"
             />
 
-    </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/button_search"
+            tools:context=".MainActivity"
+            />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE }"
+            />
+
+    </RelativeLayout>
 
 </layout>

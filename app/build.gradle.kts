@@ -42,6 +42,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.recyclerview)
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
     implementation(libs.androidx.core.ktx)
